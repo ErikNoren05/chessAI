@@ -3,11 +3,11 @@ import chess
 import time
 
 PIECE_VALUES = {
-    chess.PAWN: 1,
-    chess.KNIGHT: 3,
-    chess.BISHOP: 3,
-    chess.ROOK: 5,
-    chess.QUEEN: 9,
+    chess.PAWN: 10,
+    chess.KNIGHT: 30,
+    chess.BISHOP: 35,
+    chess.ROOK: 50,
+    chess.QUEEN: 90,
     chess.KING: 0,
 }
 
