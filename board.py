@@ -1,9 +1,9 @@
 import random
 import tkinter as tk
 from tkinter import ttk
-
 import chess
 
+import chessAI  
 
 PIECE_GLYPHS = {
     (chess.WHITE, chess.KING): "♔",
@@ -72,6 +72,7 @@ class ChessGame:
         if moves:
             move = self.choose_promotion(moves[0]) if moves[0].promotion else moves[0]
             self.board.push(move)
+            print ("in human move", {chessAI.material_evaluation(self.board)})
             self.last_move = move
             self.selected_square = None
             self.draw_board()
@@ -85,6 +86,8 @@ class ChessGame:
         piece = self.board.piece_at(square)
         self.selected_square = square if piece is not None and piece.color == chess.WHITE else None
         self.draw_board()
+        
+        
 
     def choose_promotion(self, move: chess.Move) -> chess.Move:
         dialog = tk.Toplevel(self.root)
@@ -121,7 +124,7 @@ class ChessGame:
             return
 
         #replace this with own AI move
-        move = random.choice(list(self.board.legal_moves))
+        move = chessAI.AI_move(list(self.board.legal_moves), self.board) #random.choice(list(self.board.legal_moves))
         self.board.push(move)
         self.last_move = move
         self.draw_board()
